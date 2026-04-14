@@ -7,6 +7,7 @@ The fuzzyfastq is a command-line tool written in Rust to processes FASTQ files (
 Process standard and gzipped FASTQ files.
 Match sequences with an allowance for mismatches.
 Handle both direct sequence input and sequences provided in a CSV file.
+Optionally dump matched reads to a compressed FASTQ file.
 
 ## Installation
 
@@ -18,7 +19,7 @@ Handle both direct sequence input and sequences provided in a CSV file.
 
 ## Usage
 
-`fuzzyfastq <mode> <sequence_or_path_to_csv> <fastq_directory> [mismatch_percentage]`
+`fuzzyfastq [--dump] <mode> <sequence_or_path_to_csv> <fastq_directory> [mismatch_percentage]`
 
 The tool accepts the following command line arguments:
 
@@ -32,6 +33,8 @@ The tool accepts the following command line arguments:
 Input as FASTQ files (.fastq, .fq, .fastq.gz, or .fq.gz formats). 
 
 * Mismatch Percentage (optional): The allowable mismatch percentage as a decimal (e.g., 0.1 for 10% mismatches). Defaults to 0 if not provided.
+
+* --dump (optional): When provided, any read that matches at least one target sequence is written to a gzipped FASTQ file in the same directory as the input file. The output file is named `{original_filename}.matched.fastq.gz` (e.g., `sample.fastq.gz` produces `sample.fastq.gz.matched.fastq.gz`).
 
 
 ### CSV format
